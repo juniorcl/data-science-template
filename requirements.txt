@@ -1,7 +1,1 @@
--e git+ssh://git@github.com/juniorcl/data-science-project-template.git@1e0b04788886c462ffe4cbb7e207f6cf1e8c8117#egg=dstemplate
-iniconfig==2.3.0
--e git+ssh://git@github.com/juniorcl/data-science-project-template.git@1e0b04788886c462ffe4cbb7e207f6cf1e8c8117#egg=my_project
-packaging==25.0
-pluggy==1.6.0
-Pygments==2.19.2
 pytest==9.0.2
