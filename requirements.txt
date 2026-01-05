@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 pytest==9.0.2
-=======
-pytest==9.0.2
->>>>>>> ddb4c960d8ba981b66ef529cfc80dd9d6bb4995c
