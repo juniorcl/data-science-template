@@ -8,7 +8,7 @@ def test_main_creates_all_directories_and_files(project_root: Path, monkeypatch)
     root = project_root
 
     monkeypatch.chdir(root)
-    main(project_name)
+    main([project_name])
 
     assert (root / "data" / "raw").is_dir()
     assert (root / "data" / "processed").is_dir()
@@ -42,3 +42,40 @@ def test_main_creates_all_directories_and_files(project_root: Path, monkeypatch)
     license_file = root / "LICENSE"
     assert license_file.is_file()
     assert license_file.read_text().strip() != ""
+
+    req = root / "requirements.txt"
+    assert req.is_file()
+    assert "pandas" in req.read_text()
+
+
+def test_main_with_author_flag(project_root: Path, monkeypatch):
+    monkeypatch.chdir(project_root)
+    main(["testpkg", "--author", "Clébio Júnior"])
+
+    content = (project_root / "LICENSE").read_text()
+    assert "Clébio Júnior" in content
+
+
+def test_main_with_no_notebooks(project_root: Path, monkeypatch):
+    monkeypatch.chdir(project_root)
+    main(["testpkg", "--no-notebooks"])
+
+    assert not (project_root / "notebooks").exists()
+    assert (project_root / "docs").is_dir()
+
+
+def test_main_with_no_docs(project_root: Path, monkeypatch):
+    monkeypatch.chdir(project_root)
+    main(["testpkg", "--no-docs"])
+
+    assert (project_root / "notebooks").is_dir()
+    assert not (project_root / "docs").exists()
+
+
+def test_main_with_all_flags(project_root: Path, monkeypatch):
+    monkeypatch.chdir(project_root)
+    main(["testpkg", "--no-notebooks", "--no-docs", "--author", "Dev"])
+
+    assert not (project_root / "notebooks").exists()
+    assert not (project_root / "docs").exists()
+    assert "Dev" in (project_root / "LICENSE").read_text()

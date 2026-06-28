@@ -30,3 +30,10 @@ def test_create_src_directory(project_root):
 
     for file in modeling_files:
         assert file.is_file()
+
+    assert "class Config" in (base / "config.py").read_text()
+    assert "def load_data" in (base / "dataset.py").read_text()
+    assert "def create_features" in (base / "features.py").read_text()
+    assert "def plot_correlation_matrix" in (base / "plots.py").read_text()
+    assert "def train" in (base / "modeling" / "train.py").read_text()
+    assert "def predict" in (base / "modeling" / "predict.py").read_text()

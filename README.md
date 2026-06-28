@@ -32,14 +32,14 @@ myproject/
 ├── notebooks/
 ├── src/myproject/
 │   ├── __init__.py
-│   ├── config.py
-│   ├── dataset.py
-│   ├── features.py
-│   ├── plots.py
+│   ├── config.py          # Config class with paths and hyperparams
+│   ├── dataset.py         # load_data() for CSV / Parquet
+│   ├── features.py        # create_features() skeleton
+│   ├── plots.py           # plot_correlation_matrix()
 │   └── modeling/
 │       ├── __init__.py
-│       ├── train.py
-│       └── predict.py
+│       ├── train.py       # train() + CLI example with sklearn
+│       └── predict.py     # predict() loading saved model
 ├── artifacts/
 │   ├── models/
 │   ├── features/
@@ -47,21 +47,37 @@ myproject/
 ├── docs/
 ├── reports/figures/
 ├── references/
+├── requirements.txt       # pandas, numpy, scikit-learn, matplotlib, seaborn, jupyter
 ├── README.md
 └── LICENSE
 ```
 
+### CLI flags
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `project_name` | (required) | Name of the project / Python package |
+| `--author` | `Your Name` | Author name for the LICENSE file |
+| `--no-notebooks` | `false` | Skip `notebooks/` directory |
+| `--no-docs` | `false` | Skip `docs/` directory |
+
+```bash
+dstemplate myproject --author "Jane Doe"
+dstemplate myproject --no-notebooks --no-docs
+```
+
 ## Generated structure
 
-| Directory | Purpose |
-|-----------|---------|
+| Directory / File | Purpose |
+|------------------|---------|
 | `data/` | Raw, interim, processed, and external data |
 | `notebooks/` | Jupyter notebooks for exploration and analysis |
-| `src/{project}/` | Modular Python package: config, dataset, features, plots, training (train) and prediction (predict) |
+| `src/{project}/` | Modular Python package with starter code (config, dataset, features, plots, train, predict) |
 | `artifacts/` | Trained models, feature engineering pipelines, and metrics |
 | `docs/` | Project documentation |
 | `reports/figures/` | Generated figures and reports |
 | `references/` | Reference materials |
+| `requirements.txt` | Common Data Science dependencies |
 
 ## Tests
 

@@ -1,4 +1,4 @@
-import sys
+import argparse
 
 from .utils import (
     create_artifacts_directory,
@@ -9,41 +9,62 @@ from .utils import (
     create_readme_file,
     create_reference_folder,
     create_reports_directory,
+    create_requirements_file,
     create_src_directory,
 )
 
 
-def main(project_name: str) -> None:
-    create_readme_file(project_name=project_name)
-    print("README.md file successfully created")
+def main(args: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description="Scaffold a Data Science project")
+    parser.add_argument(
+        "project_name", help="name of the project (used for the Python package)"
+    )
+    parser.add_argument(
+        "--author", default="Your Name", help="author name for the LICENSE file"
+    )
+    parser.add_argument(
+        "--python-version", default="3.10", help="target Python version"
+    )
+    parser.add_argument(
+        "--no-notebooks", action="store_true", help="skip notebooks directory"
+    )
+    parser.add_argument("--no-docs", action="store_true", help="skip docs directory")
 
-    create_license_file(author="Your Name")
-    print("LICENSE file successfully created")
+    parsed = parser.parse_args(args)
+    pn = parsed.project_name
+
+    create_readme_file(project_name=pn)
+    print("README.md created")
+
+    create_license_file(author=parsed.author)
+    print("LICENSE created")
+
+    create_requirements_file()
+    print("requirements.txt created")
 
     create_data_directory()
-    print("data folder successfully created")
+    print("data/ created")
 
     create_artifacts_directory()
-    print("artifacts folder successfully created")
+    print("artifacts/ created")
 
-    create_notebooks_folder()
-    print("notebooks folder successfully created")
+    if not parsed.no_notebooks:
+        create_notebooks_folder()
+        print("notebooks/ created")
 
-    create_docs_folder()
-    print("docs folder successfully created")
+    if not parsed.no_docs:
+        create_docs_folder()
+        print("docs/ created")
 
     create_reports_directory()
-    print("reports directory successfully created")
+    print("reports/figures/ created")
 
     create_reference_folder()
-    print("references folder successfully created")
+    print("references/ created")
 
-    create_src_directory(project_name)
-    print("src directory successfully created")
+    create_src_directory(pn)
+    print(f"src/{pn}/ created")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        raise ValueError("You must provide a project name")
-
-    main(sys.argv[1])
+    main()
