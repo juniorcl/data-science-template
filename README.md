@@ -1,8 +1,8 @@
 # Data Science Template
 
-CLI para scaffolding de projetos de Data Science. Gera estrutura padronizada de diretórios, arquivos e configuração inicial para novos projetos.
+CLI for scaffolding Data Science projects. Generates a standardized directory structure, files, and initial configuration for new projects.
 
-## Instalação (desenvolvimento)
+## Development install
 
 ```bash
 git clone https://github.com/juniorcl/data-science-template.git
@@ -12,25 +12,25 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-Isso instala o pacote em modo editável com dependências de desenvolvimento (pytest, ruff, black, ipykernel).
+This installs the package in editable mode with dev dependencies (pytest, ruff, black, ipykernel).
 
-## Uso
+## Usage
 
 ```bash
-dstemplate meu_projeto
+dstemplate myproject
 ```
 
-O comando cria a seguinte estrutura no diretório atual:
+Creates the following structure in the current directory:
 
 ```
-meu_projeto/
+myproject/
 ├── data/
 │   ├── raw/
 │   ├── interim/
 │   ├── processed/
 │   └── external/
 ├── notebooks/
-├── src/meu_projeto/
+├── src/myproject/
 │   ├── __init__.py
 │   ├── config.py
 │   ├── dataset.py
@@ -51,19 +51,19 @@ meu_projeto/
 └── LICENSE
 ```
 
-## Estrutura gerada
+## Generated structure
 
-| Diretório | Finalidade |
-|-----------|-----------|
-| `data/` | Dados brutos (raw), intermediários (interim), processados (processed) e externos (external) |
-| `notebooks/` | Jupyter notebooks para exploração e análise |
-| `src/{projeto}/` | Pacote Python modular: config, dataset, features, plots, treino (train) e predição (predict) |
-| `artifacts/` | Modelos treinados, pipelines de feature engineering e métricas |
-| `docs/` | Documentação do projeto |
-| `reports/figures/` | Figuras e relatórios gerados |
-| `references/` | Materiais de referência |
+| Directory | Purpose |
+|-----------|---------|
+| `data/` | Raw, interim, processed, and external data |
+| `notebooks/` | Jupyter notebooks for exploration and analysis |
+| `src/{project}/` | Modular Python package: config, dataset, features, plots, training (train) and prediction (predict) |
+| `artifacts/` | Trained models, feature engineering pipelines, and metrics |
+| `docs/` | Project documentation |
+| `reports/figures/` | Generated figures and reports |
+| `references/` | Reference materials |
 
-## Testes
+## Tests
 
 ```bash
 pytest -v
@@ -71,8 +71,8 @@ pytest -v
 
 ## CI
 
-GitHub Actions executa testes em Python 3.10, 3.11, 3.12 e 3.13 a cada push.
+GitHub Actions runs tests on Python 3.10, 3.11, 3.12, and 3.13 on every push.
 
-## Licença
+## License
 
 MIT
