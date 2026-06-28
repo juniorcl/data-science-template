@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 def create_src_directory(project_name, root="."):
     base = Path(root) / "src" / project_name
 

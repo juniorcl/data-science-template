@@ -1,5 +1,6 @@
 from dstemplate.utils import create_data_directory
 
+
 def test_create_data_directory(project_root):
     create_data_directory(project_root)
 

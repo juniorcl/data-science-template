@@ -1,5 +1,6 @@
 from dstemplate.utils import create_src_directory
 
+
 def test_create_src_directory(project_root):
     project_name = "mypackage"
 

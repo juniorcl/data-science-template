@@ -1,9 +1,10 @@
 from pathlib import Path
 
+
 def create_data_directory(root="."):
     data = Path(root) / "data"
 
     folders = [data / sub for sub in ["external", "interim", "processed", "raw"]]
-    
+
     for folder in folders:
         folder.mkdir(parents=True, exist_ok=True)
